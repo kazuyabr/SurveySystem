@@ -3,10 +3,10 @@
 -- Exclusões para inicio do processo
 -- ----------------------------
 
+DROP TABLE IF EXISTS poll_vote;
 DROP TABLE IF EXISTS associado;
 DROP TABLE IF EXISTS associate;
 DROP TABLE IF EXISTS poll;
-DROP TABLE IF EXISTS poll_vote;
 
 -- ----------------------------
 -- Criação das tabelas 
@@ -27,8 +27,8 @@ CREATE TABLE associate (
 
 CREATE TABLE poll (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  created_at timestamp,
-  expire_in timestamp,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  expire_in DATETIME DEFAULT NULL,
   `result` varchar(255),
   `subject` varchar(255)
 );

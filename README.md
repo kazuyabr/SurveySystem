@@ -23,8 +23,9 @@ associado é identificado por um id único e pode votar apenas uma vez por pauta
  - Junit
  - Mockito
  - Java 8
- - Postgres
- - JMS + activeMQ
+ - Flyway
+ - MySQL
+ - JMS + ActiveMQ
  - Docker
  - Swagger2
  
@@ -39,11 +40,13 @@ em hora busca por enquetes encerradas, contabiliza seus votos e atualiza o resul
 
 Em ambiente local, Com o docker rodando, executar os seguintes comandos : 
 
-docker run --name dbsicredi -e POSTGRES_PASSWORD=sicredi -e POSTGRES_DB=sicredipoll -p 5432:5432 -d postgres:11
+docker pull mysql/mysql-server:5
+
+docker container run --name dbsicredi -e MYSQL_ROOT_PASSWORD=root -d -p 3308:3306 mysql:5.7.31
 
 docker pull rmohr/activemq
 
-docker run -p 61616:61616 -p 8161:8161 rmohr/activemq
+docker container run -p 61616:61616 -p 8161:8161 rmohr/activemq
 
 # Observações
  - A aplicação deployada no Heroku, não tem suporte a messageria pois é um serviço que precisa informar o cartão de crédito e pode ser cobrado.
